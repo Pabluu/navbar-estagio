@@ -7,9 +7,9 @@ const themeMap = {
 };
 
 const theme = localStorage.getItem('theme')
-    || (tmp = Object.keys(themeMap)[0],
-        localStorage.setItem('theme', tmp),
-        tmp);
+|| (tmp = Object.keys(themeMap)[0],
+    localStorage.setItem('theme', tmp),
+    tmp);
 const bodyClass = document.body.classList;
 bodyClass.add(theme);
 
@@ -24,36 +24,28 @@ function toggleTheme() {
 
 
 
-
-const primary = document.querySelectorAll('.primary');
-const secondy = document.querySelectorAll('.secondy');
-const tercery = document.querySelectorAll('.tercery');
-
-
-function subMenu() {
-    let nextElement = this.nextElementSibling;
-    let subMenuActive = 'submenu-active';
+let secondy = document.querySelectorAll('.secondy')
+let elementPrimary;
+let itemsOcultar = false
 
 
-    ocultarElements();
-
-    if (this.className.indexOf(subMenuActive) === -1) {
-
-        if (nextElement.hidden == true) {
-            nextElement.hidden = false;
-            this.classList.add(subMenuActive)
-        } else {
-            nextElement.hidden = true;
-            this.classList.remove(subMenuActive)
-        }
-    } else {
-        nextElement.hidden = true;
-        this.classList.remove(subMenuActive)
+function expandirMenu() {
+    elementPrimary = this
+    nextElement = elementPrimary.nextElementSibling;
+    
+    while (nextElement !== null){
+        nextElement.hidden = itemsOcultar
+        nextElement = nextElement.nextElementSibling
     }
+
+    itemsOcultar = itemsOcultar == false  ? true : false
+    
 }
 
+// add um evento de click nos elemento primary
+let primary = document.querySelectorAll('.primary');
 primary.forEach((item) => {
-    item.addEventListener('click', subMenu);
+    item.addEventListener('click', expandirMenu);
 });
 
 function ocultarElements() {
@@ -67,24 +59,6 @@ function ocultarElements() {
 }
 
 
-
-
-
-
-function siteOffline() {
-    let listIcons = ['settings_suggest', 'compost', 'list_alt', 'attach_money', 'inventory_2', 'monetization_on']
-
-    let listItems = document.querySelectorAll('.item');
-
-    listItems.forEach(item => {
-        listIcons.forEach(element => {
-            if (element === item) {
-                return true
-            }
-        });
-    })
-
-}
 
 
 let minimizado = false;
@@ -108,22 +82,22 @@ function ocultarNavbar() {
 
 /*
 função auxiliar da função "ocultarNavbar"
-retorna true depois de maximizar ou false quando minimizar
- */
+retorna true depois de minimizar ou false quando maximizar
+*/
 
 function changeNavbar(minimizado) {
-    let pai = document.querySelector('.navbar');
+    let navbar = document.querySelector('.navbar');
     let svg = document.querySelector('.logo-svg').children[0];
     let navbarActive = 'navbar-active'; // seletor css
 
     if (minimizado) {
         svg.style.transform = 'rotate(180deg)'
-        pai.classList.remove(navbarActive);
+        navbar.classList.remove(navbarActive);
         return false;
 
     } else {
         svg.style.transform = 'rotate(0deg)'
-        pai.classList.add(navbarActive);
+        navbar.classList.add(navbarActive);
         return true;
     }
 }
