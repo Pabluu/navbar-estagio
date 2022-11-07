@@ -1,5 +1,3 @@
-
-
 const themeMap = {
     dark: "light",
     light: "solar",
@@ -7,9 +5,9 @@ const themeMap = {
 };
 
 const theme = localStorage.getItem('theme')
-|| (tmp = Object.keys(themeMap)[0],
-    localStorage.setItem('theme', tmp),
-    tmp);
+    || (tmp = Object.keys(themeMap)[0],
+        localStorage.setItem('theme', tmp),
+        tmp);
 const bodyClass = document.body.classList;
 bodyClass.add(theme);
 
@@ -23,58 +21,46 @@ function toggleTheme() {
 
 
 
-
-let secondy = document.querySelectorAll('.secondy')
-let elementPrimary;
-let itemsOcultar = false
-
-
+/*
+Função para expandir/minimizar o item-menu
+*/
 function expandirMenu() {
-    elementPrimary = this
-    nextElement = elementPrimary.nextElementSibling;
-    
-    while (nextElement !== null){
-        nextElement.hidden = itemsOcultar
-        nextElement = nextElement.nextElementSibling
+    sibling = this.nextElementSibling;
+
+    while (sibling !== null) {
+        if (sibling.hidden) { //exibe conteudo
+            sibling.hidden = false
+        } else { //oculta conteudo
+            sibling.hidden = true
+        }
+
+        sibling = sibling.nextElementSibling
     }
 
-    itemsOcultar = itemsOcultar == false  ? true : false
-    
 }
 
 // add um evento de click nos elemento primary
 let primary = document.querySelectorAll('.primary');
+let secondy = document.querySelectorAll('.secondy');
+
 primary.forEach((item) => {
     item.addEventListener('click', expandirMenu);
 });
 
-function ocultarElements() {
-    secondy.forEach((item) => {
-        item.hidden = true;
-    })
 
-    tercery.forEach((item) => {
-        item.hidden = true;
-    })
-}
+let navbarMinimizado = false;
 
-
-
-
-let minimizado = false;
-
-/* Função para ocultar a navbar */
+/* Função para expandir/minimizar a navbar */
 function ocultarNavbar() {
     let navText = document.querySelector(".logo-text")
     let sigla = 'apli sistemas'
 
     // maximizar navbar
-    if (minimizado == true) {
-        minimizado = changeNavbar(true)
+    if (navbarMinimizado == true) {
+        navbarMinimizado = changeNavbar(true)
     } else { // minimizar navbar
         sigla = 'as'
-        minimizado = changeNavbar(false)
-
+        navbarMinimizado = changeNavbar(false)
     }
 
     navText.innerText = sigla;
@@ -85,12 +71,12 @@ função auxiliar da função "ocultarNavbar"
 retorna true depois de minimizar ou false quando maximizar
 */
 
-function changeNavbar(minimizado) {
+function changeNavbar(navbarMinimizado) {
     let navbar = document.querySelector('.navbar');
     let svg = document.querySelector('.logo-svg').children[0];
     let navbarActive = 'navbar-active'; // seletor css
 
-    if (minimizado) {
+    if (navbarMinimizado) {
         svg.style.transform = 'rotate(180deg)'
         navbar.classList.remove(navbarActive);
         return false;
