@@ -20,7 +20,6 @@ function toggleTheme() {
 }
 
 
-
 /*
 Função para expandir/minimizar o item-menu
 */
@@ -53,13 +52,13 @@ let navbarMinimizado = false;
 /* Função para expandir/minimizar a navbar */
 function ocultarNavbar() {
     let navText = document.querySelector(".logo-text")
-    let sigla = 'apli sistemas'
+    let sigla = 'as'
 
     // maximizar navbar
     if (navbarMinimizado == true) {
         navbarMinimizado = changeNavbar(true)
     } else { // minimizar navbar
-        sigla = 'as'
+        sigla = 'apli sistemas'
         navbarMinimizado = changeNavbar(false)
     }
 

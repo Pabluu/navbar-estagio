@@ -87,6 +87,7 @@ a:active {
     position: fixed;
     transition: width 600ms ease;
     user-select: none;
+    width: 4.5rem;
 }
 
 
@@ -96,7 +97,6 @@ a:active {
     flex-direction: column;
     height: 100%;
     list-style: none;
-    margin: 0;
     padding: 0;
 }
 
@@ -119,7 +119,7 @@ a:active {
     cursor: pointer;
     display: flex;
     font-weight: normal;
-    height: 40px;
+    height: 2.5rem;
     padding-left: 10px;
     text-overflow: unset;
     width: 100%;
@@ -154,13 +154,13 @@ div.secondy span.icon {
 }
 
 .primary {
-    margin-left: 5px;
+    margin-left: .5rem;
 }
 
 .secondy {
     border-bottom: 1px dotted gray;
     color: gray;
-    margin-left: 3.2rem;
+    margin-left: 3.75rem;
     transition: all 1s ease;
 }
 
@@ -285,7 +285,9 @@ span.body {
 
 .logo-svg {
     display: inline;
-    width: 50px;
+    width: 4rem;
+    padding-left: 10px;
+    transform: rotate(180deg);
 }
 
 .logo svg {
@@ -293,7 +295,7 @@ span.body {
     margin-left: calc(100% - 50px);
     transform: rotate(180deg);
     transition: var(--transition-speed);
-    width: 30px;
+    width: 25px;
 }
 
 .logo-text {
@@ -303,21 +305,51 @@ span.body {
     width: 100%;
 }
 
+.nav-search {
+    width: 100%;
+    height: 3.3rem;
+    overflow: hidden;    
+    text-align: center;
+    margin-bottom: .5rem;
+}
+
+input#search{
+    width: 90%;
+    height: 100%;
+    margin:  0 .2rem;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    outline: none;
+    padding: 0 10px;
+    font-size: 18px;
+}
+
+input#search:focus{
+    border: 2px solid #9a216c;
+    outline: none;
+    transition: all .3s ease;
+}
+
 
 /* Small screens */
 @media only screen and (max-width: 600px) {
     .navbar {
         bottom: 0;
+        width: 5rem;
+        height: 100vh;
+        z-index: 2;
+    }
+
+    .navbar-active {
         width: 100vw;
-        height: 5rem;
     }
 
     .logo {
-        display: none;
+        /* display: none; */
     }
 
     .navbar-nav {
-        flex-direction: row;
+        flex-direction: column;
     }
 
     .nav-link {
@@ -334,13 +366,12 @@ span.body {
 @media only screen and (min-width: 600px) {
     .navbar {
         top: 0;
-        width: 300px;
         height: 100vh;
         overflow: hidden;
     }
 
     .navbar-active {
-        width: 4rem;
+        width: 20rem;
     }
 
     .navbar:hover .link-text {
